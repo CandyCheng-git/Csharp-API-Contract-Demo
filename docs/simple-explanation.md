@@ -13,11 +13,11 @@ In simple terms, it is like building a small backend system that lets users:
 
 But the real point of this project is **not** to build a fancy ticket system.
 The real point is to show:
-- **API contract design（API 契約設計）**
-- **Swagger / OpenAPI documentation（API 文件）**
-- **validation（驗證）**
-- **structured error handling（結構化錯誤處理）**
-- **integration readiness（整合準備度）**
+- **API contract design**
+- **Swagger / OpenAPI documentation
+- **validation
+- **structured error handling
+- **integration readiness
 
 ---
 
@@ -50,7 +50,7 @@ It also tries to make the API:
 **API Contract**
 
 ### Traditional Chinese
-**API 契約 / API 規格約定**
+
 
 ### Simple explanation
 An API contract is like a clear agreement between two sides.
@@ -109,11 +109,11 @@ A normal CRUD demo only proves:
 
 This project tries to prove something more valuable:
 
-- **API contract thinking（API 契約思維）**
-- **communication clarity（溝通清晰度）**
-- **developer experience awareness（開發者體驗意識）**
-- **validation design（驗證設計）**
-- **integration support（整合支援）**
+- **API contract thinking**
+- **communication clarity
+- **developer experience awareness**
+- **validation design
+- **integration support
 
 ### Simple explanation
 This means:
@@ -126,15 +126,15 @@ This means:
 
 One of the most important parts of this project is that validation is split into **two layers**.
 
-### 1. Rule-based validation（規則式驗證）
+### 1. Rule-based validation
 
 This checks whether the request is structurally valid.
 
 Examples:
-- required fields（必填欄位）
-- valid email format（正確 email 格式）
-- allowed priority values（允許的 priority 值）
-- title and description length（標題與描述長度）
+- required fields
+- valid email format
+- allowed priority values
+- title and description length
 
 ### Simple explanation
 This is like the front door check.
@@ -160,15 +160,15 @@ Why bad?
 
 ---
 
-### 2. AI-style quality validation（AI 風格品質驗證）
+### 2. AI-style quality validation
 
 This checks whether the content is useful enough.
 
 Examples:
-- **title too generic（標題太空泛）**
-- **description too vague（描述太模糊）**
-- **missing actionable context（缺少可處理資訊）**
-- **possible spam-like content（疑似垃圾內容）**
+- **title too generic
+- **description too vague
+- **missing actionable context
+- **possible spam-like content
 
 ### Simple explanation
 This is like a smarter reviewer.
@@ -207,17 +207,17 @@ Because a valid request is not always a useful request.
 **same service boundary**
 
 ### Traditional Chinese
-**保持在同一個服務邊界內**
+
 
 ### Simple explanation
 This project uses **ASP.NET Core** and **C#** for the backend.
 So the first version keeps validation inside the same backend service.
 
 This avoids adding:
-- extra deployment complexity（額外部署複雜度）
-- cross-service communication overhead（跨服務溝通成本）
-- extra dependencies（額外依賴）
-- more explanation burden（更多解釋負擔）
+- extra deployment complexity
+- cross-service communication overhead
+- extra dependencies
+- more explanation burden
 
 ### Important point
 It is **not** saying Python is bad.
@@ -232,18 +232,18 @@ It is saying:
 **mock AI-style validation**
 
 ### Traditional Chinese
-**模擬 AI 風格驗證**
+
 
 ### Simple explanation
 The first version does not need a real external LLM provider.
 
 Why?
 Because version 1 should focus on:
-- clean API design（乾淨 API 設計）
-- validation flow（驗證流程）
-- structured response format（結構化回應格式）
-- Swagger / OpenAPI docs（文件）
-- Postman integration assets（Postman 整合資產）
+- clean API design
+- validation flow
+- structured response format
+- Swagger / OpenAPI docs
+- Postman integration assets
 
 If a real AI provider is added too early, it also adds:
 - API key management
@@ -264,7 +264,7 @@ A good engineer chooses the simplest design that still proves the right idea.
 **Swagger / OpenAPI**
 
 ### Traditional Chinese
-**Swagger / OpenAPI 文件與規格展示**
+
 
 ### Simple explanation
 Swagger is the place where people can visually inspect the API.
@@ -283,7 +283,7 @@ A developer can open `/swagger` and immediately understand:
 - what response to expect
 
 ### Why it matters
-This improves **API consumer clarity（API 使用者理解清晰度）**.
+This improves **API consumer clarity.
 
 ---
 
@@ -293,7 +293,7 @@ This improves **API consumer clarity（API 使用者理解清晰度）**.
 **Postman Collection**
 
 ### Traditional Chinese
-**Postman 請求集合**
+
 
 ### Simple explanation
 A Postman collection is like a ready-made toolbox.
@@ -313,7 +313,7 @@ This shows:
 **Integration Guide**
 
 ### Traditional Chinese
-**整合指南**
+
 
 ### Simple explanation
 This document tells other developers:
@@ -373,9 +373,9 @@ The frontend sends the final request to:
 ### Result
 The downstream support team receives higher-quality tickets.
 That means:
-- less ambiguity（更少模糊不清）
-- fewer back-and-forth questions（更少來回追問）
-- faster issue handling（更快處理問題）
+- less ambiguity
+- fewer back-and-forth questions
+- faster issue handling
 
 ---
 
@@ -384,11 +384,11 @@ That means:
 This project proves more than “I can write API code.”
 
 It shows:
-- I understand **API contract design（API 契約設計）**
-- I care about **documentation clarity（文件清晰度）**
-- I think about **validation and content quality（驗證與內容品質）**
-- I understand **developer experience（開發者體驗）**
-- I can prepare **integration-ready assets（可整合資產）**
+- I understand **API contract design
+- I care about **documentation clarity
+- I think about **validation and content quality
+- I understand **developer experience
+- I can prepare **integration-ready assets
 
 ---
 
@@ -400,13 +400,13 @@ This is a **C# ASP.NET Core Web API** demo that uses a simple **Support Ticket A
 
 ## Ultra-short memory version
 
-- **API Contract** = API 契約 / API 規格約定
-- **Validation** = 驗證
-- **Rule-based validation** = 規則式驗證
-- **AI-style quality validation** = AI 風格品質驗證
-- **Structured error handling** = 結構化錯誤處理
-- **Swagger / OpenAPI** = API 文件展示與規格描述
-- **Postman Collection** = Postman 請求集合
-- **Integration Guide** = 整合指南
-- **Support Ticket API** = 支援請求單 API
-- **Integration readiness** = 整合準備度
+- **API Contract** 
+- **Validation** 
+- **Rule-based validation**
+- **AI-style quality validation** 
+- **Structured error handling** 
+- **Swagger / OpenAPI** 
+- **Postman Collection** 
+- **Integration Guide** 
+- **Support Ticket API** 
+- **Integration readiness** 

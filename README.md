@@ -113,10 +113,11 @@ src/ApiContractDemo/
 
 ## Documentation
 
-- [AI Validation Design](docs/ai-validation-design.md)
-- [API Spec Draft](docs/api-spec-draft.md)
-- [Integration Guide](docs/integration-guide.md)
-- [Day 1 Setup Guide](docs/day1-setup.md)
+- `docs/simple-explanation.md` — plain-language project explanation
+- `docs/ai-validation-design.md` — validation design rationale
+- `docs/api-spec-draft.md` — request/response contract draft
+- `docs/integration-guide.md` — client integration flow
+- `docs/day1-setup.md` — project setup notes
 
 ## Run Locally
 
@@ -125,9 +126,31 @@ dotnet restore
 dotnet run
 ```
 
+## Testing
+
+You can test the API in two ways:
+
+### Swagger
+Run the project and open the Swagger UI to view the endpoints and execute requests interactively.
+
+### Postman
+A Postman collection is included under `postman/ApiContractDemo.postman_collection.json`.
+
+Suggested folders:
+- `Tickets`
+- `Validation`
+
 ## Notes
 
 This stable version intentionally avoids Swagger example filters and other extra package-based enhancements. The current priority is a clean, working API contract demo with reliable OpenAPI output, Postman assets, and clear validation flow.
+
+## Known Limitations
+
+- in-memory storage only
+- no authentication
+- no persistent audit history
+- AI-style validation is simulated, not provider-backed
+- no automated test suite yet
 
 ## Future Improvements
 
