@@ -11,29 +11,22 @@ namespace ApiContractDemo.Controllers;
 public class TicketsController : ControllerBase
 {
     private readonly TicketService _ticketService;
+    private readonly ITicketDraftValidator _ticketDraftValidator;
 
-    public TicketsController(TicketService ticketService)
+    public TicketsController(TicketService ticketService, ITicketDraftValidator ticketDraftValidator)
     {
         _ticketService = ticketService;
+        _ticketDraftValidator = ticketDraftValidator;
     }
 
-    /// <summary>
-    /// Get all tickets.
-    /// </summary>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<TicketResponse>), StatusCodes.Status200OK)]
     public ActionResult<IEnumerable<TicketResponse>> GetAll()
     {
-        var result = _ticketService.GetAll()
-            .Select(MapToResponse)
-            .ToList();
-
+        var result = _ticketService.GetAll().Select(MapToResponse).ToList();
         return Ok(result);
     }
 
-    /// <summary>
-    /// Get a single ticket by id.
-    /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(TicketResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -53,22 +46,15 @@ public class TicketsController : ControllerBase
         return Ok(MapToResponse(ticket));
     }
 
-    /// <summary>
-    /// Create a new ticket.
-    /// </summary>
     [HttpPost]
     [ProducesResponseType(typeof(TicketResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<TicketResponse> Create([FromBody] CreateTicketRequest request)
     {
         var ticket = _ticketService.Create(request);
-
         return CreatedAtAction(nameof(GetById), new { id = ticket.Id }, MapToResponse(ticket));
     }
 
-    /// <summary>
-    /// Update ticket status.
-    /// </summary>
     [HttpPatch("{id:guid}/status")]
     [ProducesResponseType(typeof(TicketResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -89,24 +75,12 @@ public class TicketsController : ControllerBase
         return Ok(MapToResponse(ticket));
     }
 
-    /// <summary>
-    /// Validate draft ticket content before submission.
-    /// Day 1 version returns a skeleton response for future rule-based and AI-style validation layers.
-    /// </summary>
     [HttpPost("validate")]
     [ProducesResponseType(typeof(TicketValidationResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<TicketValidationResponse> ValidateDraft([FromBody] ValidateTicketRequest request)
     {
-        var response = new TicketValidationResponse
-        {
-            IsValid = true,
-            RuleValidationPassed = true,
-            AiQualityPassed = true,
-            Issues = new List<ValidationIssue>(),
-            Suggestions = new List<string>()
-        };
-
+        var response = _ticketDraftValidator.Validate(request);
         return Ok(response);
     }
 
