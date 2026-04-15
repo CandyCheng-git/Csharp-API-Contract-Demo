@@ -1,0 +1,171 @@
+{
+  "info": {
+    "name": "ApiContractDemo",
+    "_postman_id": "d8a0f0ce-0000-0000-0000-api-contract-demo",
+    "description": "Support Ticket API demo with validation and AI-style quality checks.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "Create Ticket - Valid",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Unable to login to employee portal\",\n  \"description\": \"After resetting my password this morning, I still cannot log in to the employee portal. The page keeps showing an invalid credentials message.\",\n  \"requesterEmail\": \"user@example.com\",\n  \"priority\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tickets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tickets"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Tickets",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/tickets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tickets"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Ticket By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/tickets/{{ticketId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                "{{ticketId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Ticket Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"in_progress\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tickets/{{ticketId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                "{{ticketId}}",
+                "status"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Validation",
+      "item": [
+        {
+          "name": "Validate Ticket - Poor Content",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Help\",\n  \"description\": \"not working\",\n  \"requesterEmail\": \"user@example.com\",\n  \"priority\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tickets/validate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                "validate"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Validate Ticket - Invalid Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Unable to login\",\n  \"description\": \"I cannot log in after password reset.\",\n  \"requesterEmail\": \"invalid-email\",\n  \"priority\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tickets/validate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                "validate"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://localhost:5001"
+    },
+    {
+      "key": "ticketId",
+      "value": "00000000-0000-0000-0000-000000000000"
+    }
+  ]
+}
