@@ -1,0 +1,102 @@
+# ------------------------------
+# OS / editor noise
+# ------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------
+# Obsidian / local notes
+# ------------------------------
+.obsidian/
+
+# ------------------------------
+# Visual Studio
+# ------------------------------
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio generated files
+*.rsuser
+
+# ------------------------------
+# JetBrains / Rider
+# ------------------------------
+.idea/
+
+# ------------------------------
+# Build output
+# ------------------------------
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+AnyCPU/
+
+# ------------------------------
+# ASP.NET Core / publish output
+# ------------------------------
+publish/
+artifacts/
+app.publish/
+wwwroot/dist/
+wwwroot/build/
+
+# ------------------------------
+# Logs
+# ------------------------------
+*.log
+logs/
+
+# ------------------------------
+# Test / coverage output
+# ------------------------------
+TestResults/
+coverage/
+coverage-report/
+*.coverage
+*.coveragexml
+
+# ------------------------------
+# NuGet
+# ------------------------------
+*.nupkg
+*.snupkg
+packages/
+!**/packages/build/
+.nuget/packages/
+
+# ------------------------------
+# Local environment / secrets
+# ------------------------------
+.env
+.env.*
+secrets.json
+
+# Keep appsettings tracked by default.
+# Only ignore machine-specific overrides if you create them.
+appsettings.Local.json
+appsettings.*.local.json
+
+# ------------------------------
+# Temporary files
+# ------------------------------
+*.tmp
+*.temp
+*.cache
+
+# ------------------------------
+# Generated API / HTTP client leftovers
+# ------------------------------
+*.http.user
+
+# ------------------------------
+# Node artifacts (only if later added)
+# ------------------------------
+node_modules/
+dist/
