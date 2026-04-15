@@ -1,5 +1,4 @@
 using ApiContractDemo.Services;
-using ApiContractDemo.Validation;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,9 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddSingleton<TicketService>();
-builder.Services.AddSingleton<ITicketDraftValidator, RuleBasedTicketDraftValidator>();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {

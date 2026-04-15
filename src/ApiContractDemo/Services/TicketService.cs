@@ -15,10 +15,10 @@ public class TicketService
     {
         var ticket = new Ticket
         {
-            Title = request.Title.Trim(),
-            Description = request.Description.Trim(),
-            RequesterEmail = request.RequesterEmail.Trim(),
-            Priority = request.Priority.Trim().ToLowerInvariant(),
+            Title = request.Title,
+            Description = request.Description,
+            RequesterEmail = request.RequesterEmail,
+            Priority = request.Priority,
             Status = "open",
             CreatedAt = DateTime.UtcNow
         };
@@ -35,7 +35,7 @@ public class TicketService
             return null;
         }
 
-        ticket.Status = status.Trim().ToLowerInvariant();
+        ticket.Status = status;
         return ticket;
     }
 }
