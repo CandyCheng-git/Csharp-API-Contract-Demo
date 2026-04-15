@@ -6,15 +6,15 @@ This API provides a simple support ticket workflow with both standard CRUD-style
 
 ## Base URL
 
-`https://localhost:5001`
+`https://localhost:7191`
 
-## Content type
+## Content Type
 
 `application/json`
 
 ---
 
-## Data model
+## Data Model
 
 ### Ticket
 ```json
@@ -29,22 +29,22 @@ This API provides a simple support ticket workflow with both standard CRUD-style
 }
 ```
 
-### Allowed priority values
+### Allowed Priority Values
 - `low`
 - `medium`
 - `high`
 
-### Allowed status values
+### Allowed Status Values
 - `open`
 - `in_progress`
 - `closed`
 
 ---
 
-## Endpoint definitions
+## Endpoint Definitions
 
 ### 1. Create ticket
-**POST** `/api/tickets`
+**POST** `/api/Tickets`
 
 #### Request body
 ```json
@@ -90,7 +90,7 @@ This API provides a simple support ticket workflow with both standard CRUD-style
 ---
 
 ### 2. Get all tickets
-**GET** `/api/tickets`
+**GET** `/api/Tickets`
 
 #### Success response
 **200 OK**
@@ -111,7 +111,7 @@ This API provides a simple support ticket workflow with both standard CRUD-style
 ---
 
 ### 3. Get ticket by ID
-**GET** `/api/tickets/{id}`
+**GET** `/api/Tickets/{id}`
 
 #### Success response
 **200 OK**
@@ -139,7 +139,7 @@ This API provides a simple support ticket workflow with both standard CRUD-style
 ---
 
 ### 4. Update ticket status
-**PATCH** `/api/tickets/{id}/status`
+**PATCH** `/api/Tickets/{id}/status`
 
 #### Request body
 ```json
@@ -179,7 +179,7 @@ This API provides a simple support ticket workflow with both standard CRUD-style
 ---
 
 ### 5. Validate ticket content
-**POST** `/api/tickets/validate`
+**POST** `/api/Tickets/validate`
 
 #### Request body
 ```json
@@ -217,9 +217,9 @@ This API provides a simple support ticket workflow with both standard CRUD-style
 
 ---
 
-## Validation response schema
+## Validation Response Schema
 
-### ValidationResult
+### TicketValidationResponse
 ```json
 {
   "isValid": true,

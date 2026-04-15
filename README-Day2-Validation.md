@@ -1,18 +1,21 @@
 # Day 2 Rule-Based Validation
 
-## What changed
+## What Changed
 - Added `ITicketDraftValidator`
 - Added `RuleBasedTicketDraftValidator`
 - Registered the validator in `Program.cs`
-- Wired `/api/tickets/validate` to real validation logic
+- Wired `/api/Tickets/validate` to real validation logic
 
-## Validation rules implemented
+## Validation Rules Implemented
 - title too generic
 - description too short for support
 - missing actionable context
 - possible spam-like content
 
-## Test cases to try in Swagger
+## Why This Matters
+This step moves the project from a basic API shell into a more realistic validation design. It shows that the API can do more than accept structurally valid input. It can also evaluate whether the content is useful enough for downstream support handling.
+
+## Test Cases to Try in Swagger
 
 ### Good request
 ```json
@@ -34,7 +37,7 @@
 }
 ```
 
-## Expected result
+## Expected Result
 The poor request should return:
 - `aiQualityPassed = false`
 - one or more issues

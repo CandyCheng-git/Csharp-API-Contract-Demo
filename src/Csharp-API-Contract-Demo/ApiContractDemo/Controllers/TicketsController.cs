@@ -19,6 +19,10 @@ public class TicketsController : ControllerBase
         _ticketDraftValidator = ticketDraftValidator;
     }
 
+    /// <summary>
+    /// Get all tickets.
+    /// </summary>
+    /// <returns>A list of all support tickets currently stored in the demo service.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<TicketResponse>), StatusCodes.Status200OK)]
     public ActionResult<IEnumerable<TicketResponse>> GetAll()
@@ -27,6 +31,10 @@ public class TicketsController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Get a single ticket by id.
+    /// </summary>
+    /// <param name="id">The ticket identifier.</param>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(TicketResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -46,6 +54,21 @@ public class TicketsController : ControllerBase
         return Ok(MapToResponse(ticket));
     }
 
+    /// <summary>
+    /// Create a new support ticket.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /api/tickets
+    ///     {
+    ///         "title": "Unable to login to employee portal",
+    ///         "description": "After resetting my password this morning, I still cannot log in to the employee portal. The page keeps showing an invalid credentials message.",
+    ///         "requesterEmail": "user@example.com",
+    ///         "priority": "high"
+    ///     }
+    ///
+    /// </remarks>
     [HttpPost]
     [ProducesResponseType(typeof(TicketResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -55,6 +78,9 @@ public class TicketsController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = ticket.Id }, MapToResponse(ticket));
     }
 
+    /// <summary>
+    /// Update ticket status.
+    /// </summary>
     [HttpPatch("{id:guid}/status")]
     [ProducesResponseType(typeof(TicketResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -75,6 +101,14 @@ public class TicketsController : ControllerBase
         return Ok(MapToResponse(ticket));
     }
 
+    /// <summary>
+    /// Validate draft ticket content before submission.
+    /// </summary>
+    /// <remarks>
+    /// This endpoint simulates a two-layer validation flow:
+    /// 1. standard request validation
+    /// 2. AI-style quality validation for support content clarity
+    /// </remarks>
     [HttpPost("validate")]
     [ProducesResponseType(typeof(TicketValidationResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

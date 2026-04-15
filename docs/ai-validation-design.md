@@ -13,7 +13,7 @@ The goal of the project is not just to expose backend endpoints, but to demonstr
 
 ---
 
-## Why AI automation does not have to use Python
+## Why AI Automation Does Not Have to Use Python
 
 AI automation is not the same as Python scripting.
 
@@ -38,7 +38,7 @@ This demo does not require those capabilities in version 1.
 
 ---
 
-## Why a real OpenAI API is not required in version 1
+## Why a Real OpenAI API Is Not Required in Version 1
 
 A real LLM integration can be valuable, but it is not required for the first version of this project.
 
@@ -46,7 +46,7 @@ The first version should prioritize:
 - API clarity
 - validation flow
 - structured response design
-- Swagger / OpenAPI documentation
+- OpenAPI output
 - Postman integration assets
 - maintainable service boundaries
 
@@ -64,11 +64,7 @@ Instead, version 1 uses a mock AI-style validation layer to simulate how an AI p
 
 ---
 
-## Recommended validation architecture
-
-### Validation layers
-
-The project uses two validation layers:
+## Recommended Validation Architecture
 
 ### 1. Rule-based validation
 This covers standard input validation such as:
@@ -90,11 +86,11 @@ Examples:
 - suspicious repetitive or spam-like content
 - poor support request quality
 
-This layer is intended to simulate higher-level content quality review.
+This layer simulates higher-level content quality review.
 
 ---
 
-## Why this design is stronger than forcing Python
+## Why This Design Is Stronger Than Forcing Python
 
 Using Python in version 1 would likely require:
 - a second service
@@ -115,24 +111,25 @@ That shows better architecture judgment than forcing unnecessary technologies.
 
 ---
 
-## Suggested service design
+## Suggested Service Design
 
 ### Interface
-`ITicketQualityValidator`
+`ITicketDraftValidator`
 
-### Implementations
-- `RuleBasedTicketQualityValidator`
+### Implementation in version 1
+- `RuleBasedTicketDraftValidator`
+
+### Possible future extensions
 - `MockAiTicketQualityValidator`
-- `OpenAiTicketQualityValidator` (future extension)
+- `OpenAiTicketQualityValidator`
 
 This approach allows the project to evolve without changing the public API shape.
 
 ---
 
-## Example AI-style findings
+## Example AI-Style Findings
 
-Examples of quality issues that the mock AI validator may return:
-
+Examples of quality issues the validator may return:
 - `title_too_generic`
 - `description_too_short_for_support`
 - `missing_actionable_context`
@@ -145,20 +142,20 @@ Example suggestions:
 
 ---
 
-## Example integration flow
+## Example Integration Flow
 
 A client application can use the API like this:
 
-1. Submit draft ticket content to `POST /api/tickets/validate`
+1. Submit draft ticket content to `POST /api/Tickets/validate`
 2. Receive validation result
-3. If quality checks pass, submit to `POST /api/tickets`
-4. If quality issues exist, show improvement suggestions to the user before final submission
+3. If quality checks pass, submit to `POST /api/Tickets`
+4. If quality issues exist, show improvement suggestions before final submission
 
 This design improves upstream input quality and reduces downstream support ambiguity.
 
 ---
 
-## Why this matters for API consumers
+## Why This Matters for API Consumers
 
 This validation design helps demonstrate:
 - clearer API contracts
@@ -175,9 +172,9 @@ The project is intentionally small, but it reflects real concerns in cross-team 
 
 ---
 
-## Future upgrade path
+## Future Upgrade Path
 
-In a future version, the mock AI validator can be replaced with:
+In a future version, the current validator design can be replaced with:
 - a real OpenAI-backed validator
 - another LLM provider
 - a local model integration
